@@ -6,7 +6,7 @@ using DEMOLISHSHOPEE.Models;
 
 namespace DEMOLISHSHOPEE.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("apis/[controller]")]
     [ApiController]
     public class TagController : ControllerBase
     {
