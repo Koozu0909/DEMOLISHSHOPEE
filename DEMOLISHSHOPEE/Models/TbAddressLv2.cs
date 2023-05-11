@@ -1,0 +1,11 @@
+﻿using System;
+using System.Collections.Generic;
+
+namespace DEMOLISHSHOPEE.Models
+{
+    public partial class TbAddressLv2
+    {
+        public int MaA2 { get; set; }
+        public string TenA2 { get; set; } = null!;
+    }
+}
