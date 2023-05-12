@@ -155,6 +155,10 @@ namespace DEMOLISHSHOPEE.Models
                 entity.Property(e => e.MaLoaiSp).HasColumnName("MaLoaiSP");
 
                 entity.Property(e => e.ImagePath).HasMaxLength(200);
+
+                entity.Property(e => e.TenLoaiSp)
+                    .HasMaxLength(50)
+                    .HasColumnName("TenLoaiSP");
             });
 
             modelBuilder.Entity<TbComment>(entity =>

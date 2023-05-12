@@ -45,7 +45,7 @@ namespace DEMOLISHSHOPEE.Controllers
         {
             OriginService origin = new OriginService(context);
             origin.Add(TbOrigin);
-            return Ok("OK");
+            return Ok(TbOrigin);
         }
 
         [HttpDelete("{id}")]

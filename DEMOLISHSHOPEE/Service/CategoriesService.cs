@@ -41,6 +41,7 @@ namespace DEMOLISHSHOPEE.Service
             {
                 TbCategory _origin = context.TbCategories.FirstOrDefault(x => x.MaLoaiSp == origin.MaLoaiSp);
                 _origin.MaLoaiSp = origin.MaLoaiSp;
+                _origin.TenLoaiSp = origin.TenLoaiSp;
                 _origin.Parent = origin.Parent;
                 _origin.Role = origin.Role;
                 _origin.ImagePath = origin.ImagePath;
