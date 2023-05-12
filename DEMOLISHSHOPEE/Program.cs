@@ -11,7 +11,13 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<QUANLYTHUONGMAIContext>(option => option.UseSqlServer(builder.Configuration.GetConnectionString("MyDBVK")));
 
-
+builder.Services.AddCors(p => p.AddPolicy("MyCors", builder =>
+{
+    builder.WithOrigins("http://localhost:3000", "http://localhost:3001")
+        .AllowAnyMethod()
+        .AllowAnyHeader()
+        .AllowCredentials();
+}));
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -24,7 +30,7 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
-
+app.UseCors("MyCors");
 app.MapControllers();
 
 app.Run();

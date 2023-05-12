@@ -40,7 +40,7 @@ namespace DEMOLISHSHOPEE.Controllers
             BrandServicse brand = new BrandServicse(context);
 
             brand.Add(TbBrand);
-            return Ok("OK");
+            return Ok(TbBrand);
         }
 
         ///HttpPut

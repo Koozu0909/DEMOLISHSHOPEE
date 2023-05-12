@@ -1,8 +1,6 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using DEMOLISHSHOPEE.Models;
 using DEMOLISHSHOPEE.Service;
-using DEMOLISHSHOPEE.Models;
-
+using Microsoft.AspNetCore.Mvc;
 
 namespace DEMOLISHSHOPEE.Controllers
 {
@@ -10,17 +8,16 @@ namespace DEMOLISHSHOPEE.Controllers
     [ApiController]
     public class TagController : ControllerBase
     {
-
         private readonly QUANLYTHUONGMAIContext context;
       
         public TagController(QUANLYTHUONGMAIContext ctx)
         {
             context = ctx;
         }
-        
 
         [HttpGet("{id}")]
-        public IActionResult Get(int id) {
+        public IActionResult Get(int id)
+        {
             TagService tag = new TagService(context);
             return Ok(tag.GetItem(id));
         }
@@ -41,24 +38,20 @@ namespace DEMOLISHSHOPEE.Controllers
             return Ok("OK");
         }
 
-
         [HttpPost("")]
         public IActionResult Post([FromBody] TbTag TbTag)
         {
             TagService tag = new TagService(context);
             tag.Add(TbTag);
-            return Ok("OK");
+            return Ok(TbTag);
         }
 
         [HttpDelete("{id}")]
-        public IActionResult Delete (int id)
+        public IActionResult Delete(int id)
         {
             TagService tag = new TagService(context);
             tag.Delete(id);
             return Ok("Ok");
         }
-
-
-
     }
 }
