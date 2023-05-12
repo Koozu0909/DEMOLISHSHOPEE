@@ -17,7 +17,7 @@ namespace DEMOLISHSHOPEE.Controllers
             context = ctx;
         }
 
-
+        ///HttpGetid
         [HttpGet("{id}")]
         public IActionResult Get(int id)
         {
@@ -25,6 +25,7 @@ namespace DEMOLISHSHOPEE.Controllers
             return Ok(brand.GetItem(id));
         }
 
+        ///HttpGetList
         [HttpGet("")]
         public IActionResult Get()
         {
@@ -32,6 +33,8 @@ namespace DEMOLISHSHOPEE.Controllers
 
             return Ok(brand.GetList());
         }
+
+        ///HttpPost
         [HttpPost("")]
         public IActionResult Post([FromBody] TbBrand TbBrand)
         {
@@ -41,6 +44,16 @@ namespace DEMOLISHSHOPEE.Controllers
             return Ok("OK");
         }
 
+        ///HttpPut
+        [HttpPut("")]
+        public IActionResult Update([FromBody] TbBrand TbBrand)
+        {
+            BrandService brand = new BrandService(context);
+            brand.Update(TbBrand);
+            return Ok("OK");
+        }
+
+        ///HttpDelete
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {

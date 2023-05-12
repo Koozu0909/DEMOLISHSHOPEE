@@ -32,6 +32,17 @@ namespace DEMOLISHSHOPEE.Controllers
             TagService tag = new TagService(context);
             return Ok(tag.GetList());
         }
+
+        ///HttpPut
+        [HttpPut("")]
+        public IActionResult Update([FromBody] TbTag TbTag)
+        {
+            TagService tag = new TagService(context);
+            tag.Update(TbTag);
+            return Ok("OK");
+        }
+
+
         [HttpPost("")]
         public IActionResult Post([FromBody] TbTag TbTag)
         {

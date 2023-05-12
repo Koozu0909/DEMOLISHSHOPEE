@@ -31,6 +31,16 @@ namespace DEMOLISHSHOPEE.Controllers
             OriginService origin = new OriginService(context);
             return Ok(origin.GetList());
         }
+
+        ///HttpPut
+        [HttpPut("")]
+        public IActionResult Update([FromBody] TbOrigin TbOrigin)
+        {
+            OriginService origin = new OriginService(context);
+            origin.Update(TbOrigin);
+            return Ok("OK");
+        }
+
         [HttpPost("")]
         public IActionResult Post([FromBody] TbOrigin TbOrigin)
         {
