@@ -2,30 +2,30 @@
 
 namespace DEMOLISHSHOPEE.Service
 {
-    public class OriginService
+    public class ProductImageService
     {
         private readonly QUANLYTHUONGMAIContext context;
        
-        public OriginService(QUANLYTHUONGMAIContext ctx)
+        public ProductImageService(QUANLYTHUONGMAIContext ctx)
         {
             context = ctx;
         }
 
-        public List<TbOrigin> GetList()
+        public List<TbProductImage> GetList()
         {
-            return context.TbOrigins.ToList();
+            return context.TbProductImages.ToList();
         }
 
-        public TbOrigin GetItem(int originid)
+        public TbProductImage GetItem(int originid)
         {
-            return context.TbOrigins.FirstOrDefault(x => x.MaXuatXu == originid);
+            return context.TbProductImages.FirstOrDefault(x => x.MaImage == originid);
         }
 
-        public TbOrigin Add(TbOrigin origin)
+        public TbProductImage Add(TbProductImage origin)
         {
             try
             {
-                context.TbOrigins.Add(origin);
+                context.TbProductImages.Add(origin);
                 context.SaveChanges();
                 return origin;
             }
@@ -35,13 +35,19 @@ namespace DEMOLISHSHOPEE.Service
             }
         }
 
-        public TbOrigin Update(TbOrigin origin)
+        public TbProductImage Update(TbProductImage origin)
         {
             try
             {
-                var _origin = context.TbOrigins.FirstOrDefault(x => x.MaXuatXu == origin.MaXuatXu);
-                _origin.TenXuatXu = origin.TenXuatXu;
-                context.SaveChanges();
+                var _origin = context.TbProductImages.FirstOrDefault(x => x.MaImage == origin.MaImage);
+
+
+                _origin.MaImage = origin.MaImage;
+                _origin.ImagePath = origin.ImagePath;
+                _origin.MaSp = origin.MaSp;
+
+
+        context.SaveChanges();
                 return _origin;
             }
             catch (Exception ex)
@@ -54,8 +60,8 @@ namespace DEMOLISHSHOPEE.Service
         {
             try
             {
-                var _origin = context.TbOrigins.FirstOrDefault(x => x.MaXuatXu == originid);
-                context.TbOrigins.Remove(_origin);
+                var _origin = context.TbProductImages.FirstOrDefault(x => x.MaImage == originid);
+                context.TbProductImages.Remove(_origin);
                 context.SaveChanges();
             }
             catch (Exception ex)

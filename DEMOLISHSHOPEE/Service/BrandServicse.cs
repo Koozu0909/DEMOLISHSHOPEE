@@ -6,12 +6,11 @@ using Microsoft.Data.SqlClient;
 
 namespace DEMOLISHSHOPEE.Service
 {
-    public class BrandService
+    public class BrandServicse
     {
     private readonly QUANLYTHUONGMAIContext context;
-    private readonly String connectionString = "Data Source=.;Initial Catalog=QUANLYTHUONGMAI;Integrated Security=True;TrustServerCertificate=True";
-
-    public BrandService(QUANLYTHUONGMAIContext ctx)
+   
+    public BrandServicse(QUANLYTHUONGMAIContext ctx)
     {
         context = ctx;
     }

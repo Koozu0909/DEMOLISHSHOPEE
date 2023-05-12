@@ -2,30 +2,30 @@
 
 namespace DEMOLISHSHOPEE.Service
 {
-    public class OriginService
+    public class PaymentMethodService
     {
         private readonly QUANLYTHUONGMAIContext context;
-       
-        public OriginService(QUANLYTHUONGMAIContext ctx)
+
+        public PaymentMethodService(QUANLYTHUONGMAIContext ctx)
         {
             context = ctx;
         }
 
-        public List<TbOrigin> GetList()
+        public List<TbPaymentMethod> GetList()
         {
-            return context.TbOrigins.ToList();
+            return context.TbPaymentMethods.ToList();
         }
 
-        public TbOrigin GetItem(int originid)
+        public TbPaymentMethod GetItem(int originid)
         {
-            return context.TbOrigins.FirstOrDefault(x => x.MaXuatXu == originid);
+            return context.TbPaymentMethods.FirstOrDefault(x => x.MaPayment == originid);
         }
 
-        public TbOrigin Add(TbOrigin origin)
+        public TbPaymentMethod Add(TbPaymentMethod origin)
         {
             try
             {
-                context.TbOrigins.Add(origin);
+                context.TbPaymentMethods.Add(origin);
                 context.SaveChanges();
                 return origin;
             }
@@ -35,12 +35,14 @@ namespace DEMOLISHSHOPEE.Service
             }
         }
 
-        public TbOrigin Update(TbOrigin origin)
+        public TbPaymentMethod Update(TbPaymentMethod origin)
         {
             try
             {
-                var _origin = context.TbOrigins.FirstOrDefault(x => x.MaXuatXu == origin.MaXuatXu);
-                _origin.TenXuatXu = origin.TenXuatXu;
+                var _origin = context.TbPaymentMethods.FirstOrDefault(x => x.MaPayment == origin.MaPayment);
+                _origin.MaPayment = origin.MaPayment;
+                _origin.PaymentMethod = origin.PaymentMethod;
+
                 context.SaveChanges();
                 return _origin;
             }
@@ -54,8 +56,8 @@ namespace DEMOLISHSHOPEE.Service
         {
             try
             {
-                var _origin = context.TbOrigins.FirstOrDefault(x => x.MaXuatXu == originid);
-                context.TbOrigins.Remove(_origin);
+                var _origin = context.TbPaymentMethods.FirstOrDefault(x => x.MaPayment == originid);
+                context.TbPaymentMethods.Remove(_origin);
                 context.SaveChanges();
             }
             catch (Exception ex)

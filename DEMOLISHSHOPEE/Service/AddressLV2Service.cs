@@ -6,74 +6,71 @@ using Microsoft.Data.SqlClient;
 
 namespace DEMOLISHSHOPEE.Service
 {
-    public class TagService
+    public class AddressLV2Service
     {
+
         private readonly QUANLYTHUONGMAIContext context;
-       
-        public TagService(QUANLYTHUONGMAIContext ctx)
+      
+        public AddressLV2Service(QUANLYTHUONGMAIContext ctx)
         {
             context = ctx;
         }
 
-        public  List<TbTag> GetList()
+        // get all list
+        public List<TbAddressLv2> GetList()
         {
-            return context.TbTags.ToList();
-        }
-        public TbTag GetItem(int tagid)
-        {
-            return context.TbTags.FirstOrDefault(x=> x.MaTag == tagid);
+            return context.TbAddressLv2s.ToList();
         }
 
+        // get 1 item
+        public TbAddressLv2 GetItem(int originid)
+        {
+            return context.TbAddressLv2s.FirstOrDefault(x => x.MaA2 == originid);
+        }
 
-        public TbTag Add(TbTag tag)
+        // add one address
+        public TbAddressLv2 Add(TbAddressLv2 origin)
         {
             try
             {
-                context.TbTags.Add(tag);
+                context.TbAddressLv2s.Add(origin);
                 context.SaveChanges();
-                return tag;
+                return origin;
             }
             catch (Exception ex)
             {
-
                 throw new Exception("Loi: " + ex.Message);
             }
-
         }
 
-        public TbTag Update(TbTag tag)
+        // update one address
+        public TbAddressLv2 Update(TbAddressLv2 origin)
         {
             try
             {
-                var _tag = context.TbTags.FirstOrDefault(x => x.MaTag == tag.MaTag);
-                _tag.TenTag = tag.TenTag;
+                var _origin = context.TbAddressLv2s.FirstOrDefault(x => x.MaA2 == origin.MaA2);
+                _origin.TenA2 = origin.TenA2;
                 context.SaveChanges();
-                return _tag;
+                return _origin;
             }
             catch (Exception ex)
             {
-
                 throw new Exception("Loi: " + ex.Message);
             }
-
         }
 
-        public void Delete(int tagid)
+        public void Delete(int originid)
         {
             try
             {
-                var _tag = context.TbTags.FirstOrDefault(x => x.MaTag == tagid);
-                var _tagpro = context.TbProductTags.Where(x => x.MaTag == tagid);
-                context.TbProductTags.RemoveRange(_tagpro);
-                context.TbTags.Remove(_tag);
+                var _origin = context.TbAddressLv2s.FirstOrDefault(x => x.MaA2 == originid);
+                context.TbAddressLv2s.Remove(_origin);
                 context.SaveChanges();
             }
             catch (Exception ex)
             {
-
                 throw new Exception("Loi: " + ex.Message);
             }
-
         }
 
     }

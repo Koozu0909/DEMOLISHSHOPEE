@@ -2,30 +2,30 @@
 
 namespace DEMOLISHSHOPEE.Service
 {
-    public class OriginService
+    public class WarrantyPeriodService
     {
         private readonly QUANLYTHUONGMAIContext context;
        
-        public OriginService(QUANLYTHUONGMAIContext ctx)
+        public WarrantyPeriodService(QUANLYTHUONGMAIContext ctx)
         {
             context = ctx;
         }
 
-        public List<TbOrigin> GetList()
+        public List<TbWarrantyPeriod> GetList()
         {
-            return context.TbOrigins.ToList();
+            return context.TbWarrantyPeriods.ToList();
         }
 
-        public TbOrigin GetItem(int originid)
+        public TbWarrantyPeriod GetItem(int originid)
         {
-            return context.TbOrigins.FirstOrDefault(x => x.MaXuatXu == originid);
+            return context.TbWarrantyPeriods.FirstOrDefault(x => x.MaHanBaoHanh == originid);
         }
 
-        public TbOrigin Add(TbOrigin origin)
+        public TbWarrantyPeriod Add(TbWarrantyPeriod origin)
         {
             try
             {
-                context.TbOrigins.Add(origin);
+                context.TbWarrantyPeriods.Add(origin);
                 context.SaveChanges();
                 return origin;
             }
@@ -35,12 +35,15 @@ namespace DEMOLISHSHOPEE.Service
             }
         }
 
-        public TbOrigin Update(TbOrigin origin)
+        public TbWarrantyPeriod Update(TbWarrantyPeriod origin)
         {
             try
             {
-                var _origin = context.TbOrigins.FirstOrDefault(x => x.MaXuatXu == origin.MaXuatXu);
-                _origin.TenXuatXu = origin.TenXuatXu;
+                var _origin = context.TbWarrantyPeriods.FirstOrDefault(x => x.MaHanBaoHanh == origin.MaHanBaoHanh);
+                _origin.MaHanBaoHanh = origin.MaHanBaoHanh;
+                _origin.HanBaoHanh = origin.HanBaoHanh;
+
+
                 context.SaveChanges();
                 return _origin;
             }
@@ -54,8 +57,8 @@ namespace DEMOLISHSHOPEE.Service
         {
             try
             {
-                var _origin = context.TbOrigins.FirstOrDefault(x => x.MaXuatXu == originid);
-                context.TbOrigins.Remove(_origin);
+                var _origin = context.TbWarrantyPeriods.FirstOrDefault(x => x.MaHanBaoHanh == originid);
+                context.TbWarrantyPeriods.Remove(_origin);
                 context.SaveChanges();
             }
             catch (Exception ex)

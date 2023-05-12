@@ -8,12 +8,12 @@ namespace DEMOLISHSHOPEE.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class TagController : ControllerBase
+    public class AddressController : ControllerBase
     {
 
         private readonly QUANLYTHUONGMAIContext context;
       
-        public TagController(QUANLYTHUONGMAIContext ctx)
+        public AddressController(QUANLYTHUONGMAIContext ctx)
         {
             context = ctx;
         }
@@ -21,40 +21,40 @@ namespace DEMOLISHSHOPEE.Controllers
 
         [HttpGet("{id}")]
         public IActionResult Get(int id) {
-            TagService tag = new TagService(context);
+            AddressService tag = new AddressService(context);
             return Ok(tag.GetItem(id));
         }
 
         [HttpGet("")]
         public IActionResult Get()
         {
-            TagService tag = new TagService(context);
+            AddressService tag = new AddressService(context);
             return Ok(tag.GetList());
         }
 
         ///HttpPut
         [HttpPut("")]
-        public IActionResult Update([FromBody] TbTag TbTag)
+        public IActionResult Update([FromBody] TbAddress address)
         {
-            TagService tag = new TagService(context);
-            tag.Update(TbTag);
+            AddressService tag = new AddressService(context);
+            tag.Update(address);
             return Ok("OK");
         }
 
 
         [HttpPost("")]
-        public IActionResult Post([FromBody] TbTag TbTag)
+        public IActionResult Post([FromBody] TbAddress address)
         {
-            TagService tag = new TagService(context);
-            tag.Add(TbTag);
+            AddressService tag = new AddressService(context);
+            tag.Add(address);
             return Ok("OK");
         }
 
         [HttpDelete("{id}")]
         public IActionResult Delete (int id)
         {
-            TagService tag = new TagService(context);
-            tag.Delete(id);
+            AddressService addressLv3 = new AddressService(context);
+            addressLv3.Delete(id);
             return Ok("Ok");
         }
 

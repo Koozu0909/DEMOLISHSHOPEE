@@ -10,8 +10,7 @@ namespace DEMOLISHSHOPEE.Controllers
     public class BrandController : ControllerBase
     {
         private readonly QUANLYTHUONGMAIContext context;
-        private readonly String connectionString = "Data Source=.;Initial Catalog=QUANLYTHUONGMAI;Integrated Security=True;TrustServerCertificate=True";
-
+      
         public BrandController(QUANLYTHUONGMAIContext ctx)
         {
             context = ctx;
@@ -21,7 +20,7 @@ namespace DEMOLISHSHOPEE.Controllers
         [HttpGet("{id}")]
         public IActionResult Get(int id)
         {
-            BrandService brand = new BrandService(context);
+            BrandServicse brand = new BrandServicse(context);
             return Ok(brand.GetItem(id));
         }
 
@@ -29,7 +28,7 @@ namespace DEMOLISHSHOPEE.Controllers
         [HttpGet("")]
         public IActionResult Get()
         {
-            BrandService brand = new BrandService(context);
+            BrandServicse brand = new BrandServicse(context);
 
             return Ok(brand.GetList());
         }
@@ -38,7 +37,7 @@ namespace DEMOLISHSHOPEE.Controllers
         [HttpPost("")]
         public IActionResult Post([FromBody] TbBrand TbBrand)
         {
-            BrandService brand = new BrandService(context);
+            BrandServicse brand = new BrandServicse(context);
 
             brand.Add(TbBrand);
             return Ok("OK");
@@ -48,7 +47,7 @@ namespace DEMOLISHSHOPEE.Controllers
         [HttpPut("")]
         public IActionResult Update([FromBody] TbBrand TbBrand)
         {
-            BrandService brand = new BrandService(context);
+            BrandServicse brand = new BrandServicse(context);
             brand.Update(TbBrand);
             return Ok("OK");
         }
@@ -57,7 +56,7 @@ namespace DEMOLISHSHOPEE.Controllers
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
-            BrandService brand = new BrandService(context);
+            BrandServicse brand = new BrandServicse(context);
 
             brand.Delete(id);
             return Ok("Ok");

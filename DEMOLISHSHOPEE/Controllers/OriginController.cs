@@ -10,8 +10,7 @@ namespace DEMOLISHSHOPEE.Controllers
     public class OriginController : ControllerBase
     {
         private readonly QUANLYTHUONGMAIContext context;
-        private readonly String connectionString = "Data Source=.;Initial Catalog=QUANLYTHUONGMAI;Integrated Security=True;TrustServerCertificate=True";
-
+       
         public OriginController(QUANLYTHUONGMAIContext ctx)
         {
             context = ctx;

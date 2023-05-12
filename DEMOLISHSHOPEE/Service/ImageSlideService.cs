@@ -2,30 +2,30 @@
 
 namespace DEMOLISHSHOPEE.Service
 {
-    public class OriginService
+    public class ImageSlideService
     {
         private readonly QUANLYTHUONGMAIContext context;
        
-        public OriginService(QUANLYTHUONGMAIContext ctx)
+        public ImageSlideService(QUANLYTHUONGMAIContext ctx)
         {
             context = ctx;
         }
 
-        public List<TbOrigin> GetList()
+        public List<TbImageSlide> GetList()
         {
-            return context.TbOrigins.ToList();
+            return context.TbImageSlides.ToList();
         }
 
-        public TbOrigin GetItem(int originid)
+        public TbImageSlide GetItem(int originid)
         {
-            return context.TbOrigins.FirstOrDefault(x => x.MaXuatXu == originid);
+            return context.TbImageSlides.FirstOrDefault(x => x.MaImageSlide == originid);
         }
 
-        public TbOrigin Add(TbOrigin origin)
+        public TbImageSlide Add(TbImageSlide origin)
         {
             try
             {
-                context.TbOrigins.Add(origin);
+                context.TbImageSlides.Add(origin);
                 context.SaveChanges();
                 return origin;
             }
@@ -35,12 +35,15 @@ namespace DEMOLISHSHOPEE.Service
             }
         }
 
-        public TbOrigin Update(TbOrigin origin)
+        public TbImageSlide Update(TbImageSlide origin)
         {
             try
             {
-                var _origin = context.TbOrigins.FirstOrDefault(x => x.MaXuatXu == origin.MaXuatXu);
-                _origin.TenXuatXu = origin.TenXuatXu;
+                var _origin = context.TbImageSlides.FirstOrDefault(x => x.MaImageSlide == origin.MaImageSlide);
+                _origin.MaImageSlide = origin.MaImageSlide;
+                _origin.ImageSlidePath = origin.ImageSlidePath;
+
+
                 context.SaveChanges();
                 return _origin;
             }
@@ -54,8 +57,8 @@ namespace DEMOLISHSHOPEE.Service
         {
             try
             {
-                var _origin = context.TbOrigins.FirstOrDefault(x => x.MaXuatXu == originid);
-                context.TbOrigins.Remove(_origin);
+                var _origin = context.TbImageSlides.FirstOrDefault(x => x.MaImageSlide == originid);
+                context.TbImageSlides.Remove(_origin);
                 context.SaveChanges();
             }
             catch (Exception ex)

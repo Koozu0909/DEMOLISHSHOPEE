@@ -2,30 +2,30 @@
 
 namespace DEMOLISHSHOPEE.Service
 {
-    public class OriginService
+    public class RoleCateService
     {
         private readonly QUANLYTHUONGMAIContext context;
        
-        public OriginService(QUANLYTHUONGMAIContext ctx)
+        public RoleCateService(QUANLYTHUONGMAIContext ctx)
         {
             context = ctx;
         }
 
-        public List<TbOrigin> GetList()
+        public List<TbRoleCate> GetList()
         {
-            return context.TbOrigins.ToList();
+            return context.TbRoleCates.ToList();
         }
 
-        public TbOrigin GetItem(int originid)
+        public TbRoleCate GetItem(int originid)
         {
-            return context.TbOrigins.FirstOrDefault(x => x.MaXuatXu == originid);
+            return context.TbRoleCates.FirstOrDefault(x => x.MaRole == originid);
         }
 
-        public TbOrigin Add(TbOrigin origin)
+        public TbRoleCate Add(TbRoleCate origin)
         {
             try
             {
-                context.TbOrigins.Add(origin);
+                context.TbRoleCates.Add(origin);
                 context.SaveChanges();
                 return origin;
             }
@@ -35,12 +35,15 @@ namespace DEMOLISHSHOPEE.Service
             }
         }
 
-        public TbOrigin Update(TbOrigin origin)
+        public TbRoleCate Update(TbRoleCate origin)
         {
             try
             {
-                var _origin = context.TbOrigins.FirstOrDefault(x => x.MaXuatXu == origin.MaXuatXu);
-                _origin.TenXuatXu = origin.TenXuatXu;
+                var _origin = context.TbRoleCates.FirstOrDefault(x => x.MaRole == origin.MaRole);
+                _origin.MaRole = origin.MaRole;
+                _origin.TenRole = origin.TenRole;
+
+
                 context.SaveChanges();
                 return _origin;
             }
@@ -54,8 +57,8 @@ namespace DEMOLISHSHOPEE.Service
         {
             try
             {
-                var _origin = context.TbOrigins.FirstOrDefault(x => x.MaXuatXu == originid);
-                context.TbOrigins.Remove(_origin);
+                var _origin = context.TbRoleCates.FirstOrDefault(x => x.MaRole == originid);
+                context.TbRoleCates.Remove(_origin);
                 context.SaveChanges();
             }
             catch (Exception ex)
