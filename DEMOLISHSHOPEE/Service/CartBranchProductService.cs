@@ -63,11 +63,11 @@ namespace DEMOLISHSHOPEE.Service
     }
 
 
-    public void Delete(int origin)
+    public void Delete(int macart,int maBranchProduct)
     {
         try
         {
-            var _origin = context.TbCartBranchProducts.FirstOrDefault(x => x.MaCart == origin);
+            var _origin = context.TbCartBranchProducts.FirstOrDefault(x => x.MaCart == macart && x.MaBranchProduct == maBranchProduct);
             context.TbCartBranchProducts.Remove(_origin);
             context.SaveChanges();
         }

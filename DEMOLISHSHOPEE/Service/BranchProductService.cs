@@ -68,8 +68,8 @@ namespace DEMOLISHSHOPEE.Service
     {
         try
         {
-            var _origin = context.TbFavourites.FirstOrDefault(x => x.MaYeuThich == origin);
-            context.TbFavourites.Remove(_origin);
+            var _origin = context.TbBranchProducts.FirstOrDefault(x => x.MaBranchProduct == origin);
+            context.TbBranchProducts.Remove(_origin);
             context.SaveChanges();
         }
         catch (Exception ex)

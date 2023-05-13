@@ -52,12 +52,12 @@ namespace DEMOLISHSHOPEE.Controllers
             return Ok("OK");
         }
 
-        [HttpDelete("{id}")]
-        public IActionResult Delete (int id)
+        [HttpDelete("{idCart}/{idBranchProduct}")]
+        public IActionResult Delete (int idCart,int idBranchProduct)
         {
             CartBranchProductService sv = new CartBranchProductService(context);
 
-            sv.Delete(id);
+            sv.Delete(idCart, idBranchProduct);
             return Ok("Ok");
         }
 

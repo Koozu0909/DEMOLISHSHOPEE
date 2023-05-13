@@ -45,7 +45,7 @@ namespace DEMOLISHSHOPEE.Service
                 _origin.Parent = origin.Parent;
                 _origin.Role = origin.Role;
                 _origin.ImagePath = origin.ImagePath;
-
+                _origin.TenLoaiSp = origin.TenLoaiSp;
                 context.SaveChanges();
                 return origin;
             }
