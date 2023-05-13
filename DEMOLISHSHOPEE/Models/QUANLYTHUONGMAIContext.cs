@@ -50,7 +50,7 @@ namespace DEMOLISHSHOPEE.Models
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Data Source=.;Initial Catalog=QUANLYTHUONGMAI;Integrated Security=True;TrustServerCertificate=True");
+                optionsBuilder.UseSqlServer("Data Source=VYKHOI\\VYKHOI;Initial Catalog=QUANLYTHUONGMAI;Integrated Security=True;TrustServerCertificate=True");
             }
         }
 
@@ -158,7 +158,8 @@ namespace DEMOLISHSHOPEE.Models
 
                 entity.Property(e => e.TenLoaiSp)
                     .HasMaxLength(50)
-                    .HasColumnName("TenLoaiSP");
+                    .HasColumnName("TenLoaiSP")
+                    .IsFixedLength();
             });
 
             modelBuilder.Entity<TbComment>(entity =>
