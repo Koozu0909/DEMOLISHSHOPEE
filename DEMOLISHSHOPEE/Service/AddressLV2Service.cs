@@ -50,6 +50,7 @@ namespace DEMOLISHSHOPEE.Service
             {
                 var _origin = context.TbAddressLv2s.FirstOrDefault(x => x.MaA2 == origin.MaA2);
                 _origin.TenA2 = origin.TenA2;
+                _origin.MaA1 = origin.MaA1;
                 context.SaveChanges();
                 return _origin;
             }
