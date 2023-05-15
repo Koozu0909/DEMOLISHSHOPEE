@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace DEMOLISHSHOPEE.Models
+﻿namespace DEMOLISHSHOPEE.Models
 {
     public partial class TbAddressLv3
     {

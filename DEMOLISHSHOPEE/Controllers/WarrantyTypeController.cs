@@ -1,6 +1,5 @@
 ﻿using DEMOLISHSHOPEE.Models;
 using DEMOLISHSHOPEE.Service;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DEMOLISHSHOPEE.Controllers
@@ -15,7 +14,6 @@ namespace DEMOLISHSHOPEE.Controllers
         {
             context = ctx;
         }
-
 
         [HttpGet("{id}")]
         public IActionResult Get(int id)

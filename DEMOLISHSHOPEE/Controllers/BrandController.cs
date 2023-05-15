@@ -1,6 +1,5 @@
 ﻿using DEMOLISHSHOPEE.Models;
 using DEMOLISHSHOPEE.Service;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DEMOLISHSHOPEE.Controllers
@@ -10,7 +9,7 @@ namespace DEMOLISHSHOPEE.Controllers
     public class BrandController : ControllerBase
     {
         private readonly QUANLYTHUONGMAIContext context;
-      
+
         public BrandController(QUANLYTHUONGMAIContext ctx)
         {
             context = ctx;
@@ -61,6 +60,5 @@ namespace DEMOLISHSHOPEE.Controllers
             brand.Delete(id);
             return Ok("Ok");
         }
-
     }
 }

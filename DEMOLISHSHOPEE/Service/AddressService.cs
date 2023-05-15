@@ -1,16 +1,11 @@
-﻿using DEMOLISHSHOPEE.Alias;
-using DEMOLISHSHOPEE.Models;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Data.SqlClient;
+﻿using DEMOLISHSHOPEE.Models;
 
 namespace DEMOLISHSHOPEE.Service
 {
     public class AddressService
     {
-
         private readonly QUANLYTHUONGMAIContext context;
-       
+
         public AddressService(QUANLYTHUONGMAIContext ctx)
         {
             context = ctx;
@@ -53,9 +48,7 @@ namespace DEMOLISHSHOPEE.Service
                 _origin.MaA2 = origin.MaA2;
                 _origin.MaA3 = origin.MaA3;
                 _origin.ChiTiet = origin.ChiTiet;
-                _origin.MaUser= origin.MaUser;
-
-
+                _origin.MaUser = origin.MaUser;
 
                 context.SaveChanges();
                 return _origin;
@@ -79,6 +72,5 @@ namespace DEMOLISHSHOPEE.Service
                 throw new Exception("Loi: " + ex.Message);
             }
         }
-
     }
 }

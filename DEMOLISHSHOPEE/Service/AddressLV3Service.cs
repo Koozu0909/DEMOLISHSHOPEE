@@ -1,16 +1,11 @@
-﻿using DEMOLISHSHOPEE.Alias;
-using DEMOLISHSHOPEE.Models;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Data.SqlClient;
+﻿using DEMOLISHSHOPEE.Models;
 
 namespace DEMOLISHSHOPEE.Service
 {
     public class AddressLV3Service
     {
-
         private readonly QUANLYTHUONGMAIContext context;
-      
+
         public AddressLV3Service(QUANLYTHUONGMAIContext ctx)
         {
             context = ctx;
@@ -73,6 +68,5 @@ namespace DEMOLISHSHOPEE.Service
                 throw new Exception("Loi: " + ex.Message);
             }
         }
-
     }
 }

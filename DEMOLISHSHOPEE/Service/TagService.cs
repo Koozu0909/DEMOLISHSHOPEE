@@ -1,29 +1,25 @@
-﻿using DEMOLISHSHOPEE.Alias;
-using DEMOLISHSHOPEE.Models;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Data.SqlClient;
+﻿using DEMOLISHSHOPEE.Models;
 
 namespace DEMOLISHSHOPEE.Service
 {
     public class TagService
     {
         private readonly QUANLYTHUONGMAIContext context;
-       
+
         public TagService(QUANLYTHUONGMAIContext ctx)
         {
             context = ctx;
         }
 
-        public  List<TbTag> GetList()
+        public List<TbTag> GetList()
         {
             return context.TbTags.ToList();
         }
+
         public TbTag GetItem(int tagid)
         {
-            return context.TbTags.FirstOrDefault(x=> x.MaTag == tagid);
+            return context.TbTags.FirstOrDefault(x => x.MaTag == tagid);
         }
-
 
         public TbTag Add(TbTag tag)
         {
@@ -35,10 +31,8 @@ namespace DEMOLISHSHOPEE.Service
             }
             catch (Exception ex)
             {
-
                 throw new Exception("Loi: " + ex.Message);
             }
-
         }
 
         public TbTag Update(TbTag tag)
@@ -52,10 +46,8 @@ namespace DEMOLISHSHOPEE.Service
             }
             catch (Exception ex)
             {
-
                 throw new Exception("Loi: " + ex.Message);
             }
-
         }
 
         public void Delete(int tagid)
@@ -70,11 +62,8 @@ namespace DEMOLISHSHOPEE.Service
             }
             catch (Exception ex)
             {
-
                 throw new Exception("Loi: " + ex.Message);
             }
-
         }
-
     }
 }

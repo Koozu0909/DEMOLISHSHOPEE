@@ -9,7 +9,7 @@ namespace DEMOLISHSHOPEE.Controllers
     public class TagController : ControllerBase
     {
         private readonly QUANLYTHUONGMAIContext context;
-      
+
         public TagController(QUANLYTHUONGMAIContext ctx)
         {
             context = ctx;

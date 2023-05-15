@@ -1,77 +1,67 @@
-﻿using DEMOLISHSHOPEE.Alias;
-using DEMOLISHSHOPEE.Models;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Data.SqlClient;
+﻿using DEMOLISHSHOPEE.Models;
 
 namespace DEMOLISHSHOPEE.Service
 {
     public class BrandServicse
     {
-    private readonly QUANLYTHUONGMAIContext context;
-   
-    public BrandServicse(QUANLYTHUONGMAIContext ctx)
-    {
-        context = ctx;
-    }
+        private readonly QUANLYTHUONGMAIContext context;
 
-    public List<TbBrand> GetList()
-    {
-        return context.TbBrands.ToList();
-    }
-    public TbBrand GetItem(int brandid)
-    {
-        return context.TbBrands.FirstOrDefault(x => x.MaThuongHieu == brandid);
-    }
-
-
-    public TbBrand Add(TbBrand brand)
-    {
-        try
+        public BrandServicse(QUANLYTHUONGMAIContext ctx)
         {
-            context.TbBrands.Add(brand);
-            context.SaveChanges();
-            return brand;
-        }
-        catch (Exception ex)
-        {
-
-            throw new Exception("Loi: " + ex.Message);
+            context = ctx;
         }
 
-    }
-
-    public TbBrand Update(TbBrand brand)
-    {
-        try
+        public List<TbBrand> GetList()
         {
-            var _brand = context.TbBrands.FirstOrDefault(x => x.MaThuongHieu == brand.MaThuongHieu);
+            return context.TbBrands.ToList();
+        }
+
+        public TbBrand GetItem(int brandid)
+        {
+            return context.TbBrands.FirstOrDefault(x => x.MaThuongHieu == brandid);
+        }
+
+        public TbBrand Add(TbBrand brand)
+        {
+            try
+            {
+                context.TbBrands.Add(brand);
+                context.SaveChanges();
+                return brand;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Loi: " + ex.Message);
+            }
+        }
+
+        public TbBrand Update(TbBrand brand)
+        {
+            try
+            {
+                var _brand = context.TbBrands.FirstOrDefault(x => x.MaThuongHieu == brand.MaThuongHieu);
                 _brand.TenThuongHieu = brand.TenThuongHieu;
-            context.SaveChanges();
-            return _brand;
+                context.SaveChanges();
+                return _brand;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Loi: " + ex.Message);
+            }
         }
-        catch (Exception ex)
+
+        public void Delete(int brandid)
         {
-
-            throw new Exception("Loi: " + ex.Message);
+            try
+            {
+                var _brand = context.TbBrands.FirstOrDefault(x => x.MaThuongHieu == brandid);
+                context.TbBrands.Remove(_brand);
+                context.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Loi: " + ex.Message);
+            }
         }
-
     }
-
-    public void Delete(int brandid)
-    {
-        try
-        {
-            var _brand = context.TbBrands.FirstOrDefault(x => x.MaThuongHieu == brandid);
-            context.TbBrands.Remove(_brand);
-            context.SaveChanges();
-        }
-        catch (Exception ex)
-        {
-
-            throw new Exception("Loi: " + ex.Message);
-        }
-
-    }
-}
 }

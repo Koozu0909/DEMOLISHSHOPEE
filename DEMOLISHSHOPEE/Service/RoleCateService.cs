@@ -5,7 +5,7 @@ namespace DEMOLISHSHOPEE.Service
     public class RoleCateService
     {
         private readonly QUANLYTHUONGMAIContext context;
-       
+
         public RoleCateService(QUANLYTHUONGMAIContext ctx)
         {
             context = ctx;
@@ -42,7 +42,6 @@ namespace DEMOLISHSHOPEE.Service
                 var _origin = context.TbRoleCates.FirstOrDefault(x => x.MaRole == origin.MaRole);
                 _origin.MaRole = origin.MaRole;
                 _origin.TenRole = origin.TenRole;
-
 
                 context.SaveChanges();
                 return _origin;

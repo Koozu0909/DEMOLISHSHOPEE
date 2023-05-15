@@ -1,29 +1,25 @@
-﻿using DEMOLISHSHOPEE.Alias;
-using DEMOLISHSHOPEE.Models;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Data.SqlClient;
+﻿using DEMOLISHSHOPEE.Models;
 
 namespace DEMOLISHSHOPEE.Service
 {
     public class BranchFollowService
     {
         private readonly QUANLYTHUONGMAIContext context;
-       
+
         public BranchFollowService(QUANLYTHUONGMAIContext ctx)
         {
             context = ctx;
         }
 
-        public  List<TbBranchFollow> GetList()
+        public List<TbBranchFollow> GetList()
         {
             return context.TbBranchFollows.ToList();
         }
+
         public TbBranchFollow GetItem(int tagid)
         {
-            return context.TbBranchFollows.FirstOrDefault(x=> x.MaBranchFollow == tagid);
+            return context.TbBranchFollows.FirstOrDefault(x => x.MaBranchFollow == tagid);
         }
-
 
         public TbBranchFollow Add(TbBranchFollow tbBranchFollow)
         {
@@ -35,10 +31,8 @@ namespace DEMOLISHSHOPEE.Service
             }
             catch (Exception ex)
             {
-
                 throw new Exception("Loi: " + ex.Message);
             }
-
         }
 
         public TbBranchFollow Update(TbBranchFollow origin)
@@ -48,19 +42,17 @@ namespace DEMOLISHSHOPEE.Service
                 var _origin = context.TbBranchFollows.FirstOrDefault(x => x.MaBranchFollow == origin.MaBranchFollow);
                 _origin.MaBranchFollow = origin.MaBranchFollow;
                 _origin.MaUser = origin.MaUser;
-                _origin.MaCuaHang = origin.MaCuaHang;   
+                _origin.MaCuaHang = origin.MaCuaHang;
 
-                 context.SaveChanges();
+                context.SaveChanges();
                 return _origin;
             }
             catch (Exception ex)
             {
-
                 throw new Exception("Loi: " + ex.Message);
             }
-
         }
-        
+
         public void Delete(int originid)
         {
             try
@@ -71,11 +63,8 @@ namespace DEMOLISHSHOPEE.Service
             }
             catch (Exception ex)
             {
-
                 throw new Exception("Loi: " + ex.Message);
             }
-
         }
-
     }
 }

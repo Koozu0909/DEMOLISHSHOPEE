@@ -1,6 +1,5 @@
 ﻿using DEMOLISHSHOPEE.Models;
 using DEMOLISHSHOPEE.Service;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DEMOLISHSHOPEE.Controllers
@@ -10,12 +9,11 @@ namespace DEMOLISHSHOPEE.Controllers
     public class PaymentMethodController : ControllerBase
     {
         private readonly QUANLYTHUONGMAIContext context;
-       
+
         public PaymentMethodController(QUANLYTHUONGMAIContext ctx)
         {
             context = ctx;
         }
-
 
         [HttpGet("{id}")]
         public IActionResult Get(int id)

@@ -5,7 +5,7 @@ namespace DEMOLISHSHOPEE.Service
     public class ImageSlideService
     {
         private readonly QUANLYTHUONGMAIContext context;
-       
+
         public ImageSlideService(QUANLYTHUONGMAIContext ctx)
         {
             context = ctx;
@@ -42,7 +42,6 @@ namespace DEMOLISHSHOPEE.Service
                 var _origin = context.TbImageSlides.FirstOrDefault(x => x.MaImageSlide == origin.MaImageSlide);
                 _origin.MaImageSlide = origin.MaImageSlide;
                 _origin.ImageSlidePath = origin.ImageSlidePath;
-
 
                 context.SaveChanges();
                 return _origin;

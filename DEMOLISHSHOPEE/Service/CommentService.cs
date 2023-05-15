@@ -1,50 +1,44 @@
-﻿using DEMOLISHSHOPEE.Alias;
-using DEMOLISHSHOPEE.Models;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Data.SqlClient;
+﻿using DEMOLISHSHOPEE.Models;
 
 namespace DEMOLISHSHOPEE.Service
 {
     public class CommentService
     {
-    private readonly QUANLYTHUONGMAIContext context;
-   
-    public CommentService(QUANLYTHUONGMAIContext ctx)
-    {
-        context = ctx;
-    }
+        private readonly QUANLYTHUONGMAIContext context;
 
-    public List<TbComment> GetList()
-    {
-        return context.TbComments.ToList();
-    }
-    public TbComment GetItem(int brandid)
-    {
-        return context.TbComments.FirstOrDefault(x => x.MaComment == brandid);
-    }
-
-
-    public TbComment Add(TbComment origin)
-    {
-        try
+        public CommentService(QUANLYTHUONGMAIContext ctx)
         {
-            context.TbComments.Add(origin);
-            context.SaveChanges();
-            return origin;
-        }
-        catch (Exception ex)
-        {
-
-            throw new Exception("Loi: " + ex.Message);
+            context = ctx;
         }
 
-    }
-
-    public TbComment Update(TbComment origin)
-    {
-        try
+        public List<TbComment> GetList()
         {
+            return context.TbComments.ToList();
+        }
+
+        public TbComment GetItem(int brandid)
+        {
+            return context.TbComments.FirstOrDefault(x => x.MaComment == brandid);
+        }
+
+        public TbComment Add(TbComment origin)
+        {
+            try
+            {
+                context.TbComments.Add(origin);
+                context.SaveChanges();
+                return origin;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Loi: " + ex.Message);
+            }
+        }
+
+        public TbComment Update(TbComment origin)
+        {
+            try
+            {
                 TbComment _origin = context.TbComments.FirstOrDefault(x => x.MaComment == origin.MaComment);
                 _origin.MaComment = origin.MaComment;
                 _origin.MaUser = origin.MaUser;
@@ -54,36 +48,30 @@ namespace DEMOLISHSHOPEE.Service
                 _origin.NoiDung = origin.NoiDung;
                 _origin.CreateDay = origin.CreateDay;
                 _origin.CreateBy = origin.CreateBy;
-    _origin.UpdateDay = origin.UpdateDay;
-  _origin.UpdateBy = origin.UpdateBy;   
+                _origin.UpdateDay = origin.UpdateDay;
+                _origin.UpdateBy = origin.UpdateBy;
 
-
-        context.SaveChanges();
-            return origin;
+                context.SaveChanges();
+                return origin;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Loi: " + ex.Message);
+            }
         }
-        catch (Exception ex)
+
+        public void Delete(int origin)
         {
-
-            throw new Exception("Loi: " + ex.Message);
+            try
+            {
+                var _origin = context.TbComments.FirstOrDefault(x => x.MaComment == origin);
+                context.TbComments.Remove(_origin);
+                context.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Loi: " + ex.Message);
+            }
         }
-
     }
-
-
-    public void Delete(int origin)
-    {
-        try
-        {
-            var _origin = context.TbComments.FirstOrDefault(x => x.MaComment == origin);
-            context.TbComments.Remove(_origin);
-            context.SaveChanges();
-        }
-        catch (Exception ex)
-        {
-
-            throw new Exception("Loi: " + ex.Message);
-        }
-
-    }
-}
 }

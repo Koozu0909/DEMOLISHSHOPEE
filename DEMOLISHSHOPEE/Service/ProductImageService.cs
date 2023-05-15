@@ -5,7 +5,7 @@ namespace DEMOLISHSHOPEE.Service
     public class ProductImageService
     {
         private readonly QUANLYTHUONGMAIContext context;
-       
+
         public ProductImageService(QUANLYTHUONGMAIContext ctx)
         {
             context = ctx;
@@ -41,13 +41,11 @@ namespace DEMOLISHSHOPEE.Service
             {
                 var _origin = context.TbProductImages.FirstOrDefault(x => x.MaImage == origin.MaImage);
 
-
                 _origin.MaImage = origin.MaImage;
                 _origin.ImagePath = origin.ImagePath;
                 _origin.MaSp = origin.MaSp;
 
-
-        context.SaveChanges();
+                context.SaveChanges();
                 return _origin;
             }
             catch (Exception ex)

@@ -1,16 +1,11 @@
-﻿using DEMOLISHSHOPEE.Alias;
-using DEMOLISHSHOPEE.Models;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Data.SqlClient;
+﻿using DEMOLISHSHOPEE.Models;
 
 namespace DEMOLISHSHOPEE.Service
 {
     public class UserService
     {
-
         private readonly QUANLYTHUONGMAIContext context;
-       
+
         public UserService(QUANLYTHUONGMAIContext ctx)
         {
             context = ctx;
@@ -21,7 +16,7 @@ namespace DEMOLISHSHOPEE.Service
         {
             return context.TbUsers.ToList();
         }
-       
+
         // get 1 item
         public TbUser GetItem(int originid)
         {
@@ -50,7 +45,7 @@ namespace DEMOLISHSHOPEE.Service
             {
                 var _origin = context.TbUsers.FirstOrDefault(x => x.MaUser == origin.MaUser);
                 _origin.MaUser = origin.MaUser;
-                _origin.HoTen = origin.HoTen; 
+                _origin.HoTen = origin.HoTen;
                 _origin.Ten = origin.Ten;
                 _origin.Gmail = origin.Gmail;
                 _origin.Sdt = origin.Sdt;
@@ -64,7 +59,7 @@ namespace DEMOLISHSHOPEE.Service
                 _origin.UpdateBy = origin.UpdateBy;
                 _origin.UpdateDate = origin.UpdateDate;
 
-        context.SaveChanges();
+                context.SaveChanges();
                 return _origin;
             }
             catch (Exception ex)
@@ -86,6 +81,5 @@ namespace DEMOLISHSHOPEE.Service
                 throw new Exception("Loi: " + ex.Message);
             }
         }
-
     }
 }

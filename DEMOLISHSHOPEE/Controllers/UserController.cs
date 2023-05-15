@@ -46,7 +46,7 @@ namespace DEMOLISHSHOPEE.Controllers
             UserService sv = new UserService(context);
 
             sv.Add(tbUser);
-            return Ok("OK"); 
+            return Ok("OK");
         }
 
         [HttpDelete("{id}")]

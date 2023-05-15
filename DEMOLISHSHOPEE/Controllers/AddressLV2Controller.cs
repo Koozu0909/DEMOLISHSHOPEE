@@ -1,8 +1,6 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using DEMOLISHSHOPEE.Models;
 using DEMOLISHSHOPEE.Service;
-using DEMOLISHSHOPEE.Models;
-
+using Microsoft.AspNetCore.Mvc;
 
 namespace DEMOLISHSHOPEE.Controllers
 {
@@ -10,17 +8,16 @@ namespace DEMOLISHSHOPEE.Controllers
     [ApiController]
     public class AddressLV2Controller : ControllerBase
     {
-
         private readonly QUANLYTHUONGMAIContext context;
-      
+
         public AddressLV2Controller(QUANLYTHUONGMAIContext ctx)
         {
             context = ctx;
         }
-        
 
         [HttpGet("{id}")]
-        public IActionResult Get(int id) {
+        public IActionResult Get(int id)
+        {
             AddressLV2Service tag = new AddressLV2Service(context);
             return Ok(tag.GetItem(id));
         }
@@ -41,7 +38,6 @@ namespace DEMOLISHSHOPEE.Controllers
             return Ok("OK");
         }
 
-
         [HttpPost("")]
         public IActionResult Post([FromBody] TbAddressLv2 addressLv2)
         {
@@ -51,14 +47,11 @@ namespace DEMOLISHSHOPEE.Controllers
         }
 
         [HttpDelete("{id}")]
-        public IActionResult Delete (int id)
+        public IActionResult Delete(int id)
         {
             AddressLV2Service addressLv2 = new AddressLV2Service(context);
             addressLv2.Delete(id);
             return Ok("Ok");
         }
-
-
-
     }
 }

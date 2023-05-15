@@ -1,8 +1,6 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using DEMOLISHSHOPEE.Models;
 using DEMOLISHSHOPEE.Service;
-using DEMOLISHSHOPEE.Models;
-
+using Microsoft.AspNetCore.Mvc;
 
 namespace DEMOLISHSHOPEE.Controllers
 {
@@ -10,17 +8,16 @@ namespace DEMOLISHSHOPEE.Controllers
     [ApiController]
     public class CartBranchProductController : ControllerBase
     {
-
         private readonly QUANLYTHUONGMAIContext context;
-      
+
         public CartBranchProductController(QUANLYTHUONGMAIContext ctx)
         {
             context = ctx;
         }
-        
 
         [HttpGet("{id}")]
-        public IActionResult Get(int id) {
+        public IActionResult Get(int id)
+        {
             CartBranchProductService sv = new CartBranchProductService(context);
             return Ok(sv.GetItem(id));
         }
@@ -43,7 +40,6 @@ namespace DEMOLISHSHOPEE.Controllers
             return Ok("OK");
         }
 
-
         [HttpPost("")]
         public IActionResult Post([FromBody] TbCartBranchProduct tbCartBranchProduct)
         {
@@ -53,15 +49,12 @@ namespace DEMOLISHSHOPEE.Controllers
         }
 
         [HttpDelete("{idCart}/{idBranchProduct}")]
-        public IActionResult Delete (int idCart,int idBranchProduct)
+        public IActionResult Delete(int idCart, int idBranchProduct)
         {
             CartBranchProductService sv = new CartBranchProductService(context);
 
             sv.Delete(idCart, idBranchProduct);
             return Ok("Ok");
         }
-
-
-
     }
 }

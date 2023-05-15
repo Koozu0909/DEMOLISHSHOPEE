@@ -5,7 +5,7 @@ namespace DEMOLISHSHOPEE.Service
     public class OriginService
     {
         private readonly QUANLYTHUONGMAIContext context;
-       
+
         public OriginService(QUANLYTHUONGMAIContext ctx)
         {
             context = ctx;

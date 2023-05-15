@@ -5,7 +5,7 @@ namespace DEMOLISHSHOPEE.Service
     public class WarrantyTypeService
     {
         private readonly QUANLYTHUONGMAIContext context;
-       
+
         public WarrantyTypeService(QUANLYTHUONGMAIContext ctx)
         {
             context = ctx;
@@ -42,7 +42,6 @@ namespace DEMOLISHSHOPEE.Service
                 var _origin = context.TbWarrantyTypes.FirstOrDefault(x => x.MaLoaiBaoHanh == origin.MaLoaiBaoHanh);
                 _origin.MaLoaiBaoHanh = origin.MaLoaiBaoHanh;
                 _origin.LoaiBaoHanh = origin.LoaiBaoHanh;
-
 
                 context.SaveChanges();
                 return _origin;
