@@ -1,4 +1,5 @@
-﻿using DEMOLISHSHOPEE.Models;
+﻿using DEMOLISHSHOPEE.Alias;
+using DEMOLISHSHOPEE.Models;
 
 namespace DEMOLISHSHOPEE.Service
 {
@@ -11,9 +12,31 @@ namespace DEMOLISHSHOPEE.Service
             context = ctx;
         }
 
-        public List<TbCategory> GetList()
+        public List<CategoriesAlias> GetList()
         {
-            return context.TbCategories.ToList();
+            var lst = context.TbCategories.ToList();
+            List<CategoriesAlias> lsCate = new List<CategoriesAlias>();
+            CategoriesAlias cateDTO;
+            foreach (var item in lst)
+            {
+                cateDTO = new CategoriesAlias();
+                cateDTO.MaLoaiSp = item.MaLoaiSp;
+                cateDTO.TenLoaiSp = item.TenLoaiSp;
+                cateDTO.Parent = item.Parent;
+                var cate = context.TbCategories.FirstOrDefault(t => t.MaLoaiSp == item.Parent);
+                if (cate != null)
+                {
+                    cateDTO.TenParent = cate.TenLoaiSp;
+                }
+                else
+                {
+                    cateDTO.TenParent = " ";
+                }
+                cateDTO.Role = item.Role;
+                cateDTO.ImagePath = item.ImagePath;
+                lsCate.Add(cateDTO);
+            }
+            return lsCate;
         }
 
         public TbCategory GetItem(int brandid)
@@ -40,12 +63,8 @@ namespace DEMOLISHSHOPEE.Service
             try
             {
                 TbCategory _origin = context.TbCategories.FirstOrDefault(x => x.MaLoaiSp == origin.MaLoaiSp);
-                _origin.MaLoaiSp = origin.MaLoaiSp;
                 _origin.TenLoaiSp = origin.TenLoaiSp;
-                _origin.Parent = origin.Parent;
-                _origin.Role = origin.Role;
                 _origin.ImagePath = origin.ImagePath;
-                _origin.TenLoaiSp = origin.TenLoaiSp;
                 context.SaveChanges();
                 return origin;
             }
@@ -55,13 +74,23 @@ namespace DEMOLISHSHOPEE.Service
             }
         }
 
-        public void Delete(int origin)
+        public void Delete(int cateid)
         {
             try
             {
-                var _origin = context.TbCategories.FirstOrDefault(x => x.MaLoaiSp == origin);
-                context.TbCategories.Remove(_origin);
+                var _cate = context.TbCategories.FirstOrDefault(x => x.MaLoaiSp == cateid);
+                List<TbCategory> _catechild = context.TbCategories.Where(x => x.Parent == cateid).ToList();
+
+                foreach (var item in _catechild)
+                {
+                    List<TbCategory> _categrandchild = context.TbCategories.Where(x => x.Parent == item.MaLoaiSp).ToList();
+                    context.TbCategories.RemoveRange(_categrandchild);
+                }
+
+                context.TbCategories.RemoveRange(_catechild);
+                context.TbCategories.Remove(_cate);
                 context.SaveChanges();
+
             }
             catch (Exception ex)
             {
