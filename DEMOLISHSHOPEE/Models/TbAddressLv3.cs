@@ -7,6 +7,5 @@ namespace DEMOLISHSHOPEE.Models
     {
         public int MaA3 { get; set; }
         public string? TenA3 { get; set; }
-        public int? MaA2 { get; set; }
     }
 }

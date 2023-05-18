@@ -94,7 +94,7 @@ namespace DEMOLISHSHOPEE.Controllers
                 Role = p.Role,
             };
 
-            if (p.Image.Length > 0 && p.Image != null)
+            if (p.Image != null && p.Image.Length > 0)
             {
                 string fileName = Path.GetFileName(p.Image.FileName);
                 string newFileName = $"{p.TenLoaiSp}-{fileName}";
@@ -116,6 +116,7 @@ namespace DEMOLISHSHOPEE.Controllers
             sv.Add(cate);
             return Ok(cate);
         }
+
 
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)

@@ -7,6 +7,6 @@
         public string? TenLoaiSp { get; set; }
         public int MaLoaiSp { get; set; }
 
-        public IFormFile Image { get; set; }
+        public IFormFile? Image { get; set; }
     }
 }
