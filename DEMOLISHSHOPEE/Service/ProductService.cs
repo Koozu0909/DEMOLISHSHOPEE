@@ -1,4 +1,5 @@
-﻿using DEMOLISHSHOPEE.Models;
+﻿using DEMOLISHSHOPEE.Alias;
+using DEMOLISHSHOPEE.Models;
 
 namespace DEMOLISHSHOPEE.Service
 {
@@ -11,14 +12,46 @@ namespace DEMOLISHSHOPEE.Service
             context = ctx;
         }
 
-        public List<TbProduct> GetList()
+        public List<ProductAlias> GetList()
         {
-            return context.TbProducts.ToList();
+            var lst = context.TbProducts.ToList();
+            List<ProductAlias> lsProduct = new List<ProductAlias>();
+            ProductAlias productDTO;
+            foreach (var item in lst)
+            {
+                productDTO = new ProductAlias();
+                productDTO.MaSp = item.MaSp;
+                productDTO.TenSp = item.TenSp;
+                productDTO.MaLoaiSp = item.MaLoaiSp;
+                var loaisp = context.TbCategories.FirstOrDefault(t => t.MaLoaiSp == item.MaLoaiSp);
+                productDTO.TenLoaiSp = loaisp.TenLoaiSp;
+                productDTO.SeoName = item.SeoName;
+                productDTO.MaThuongHieu = item.MaThuongHieu;
+                var th = context.TbBrands.FirstOrDefault(t => t.MaThuongHieu == item.MaThuongHieu);
+                productDTO.TenThuongHieu = th.TenThuongHieu;
+                productDTO.MaLoaiBaoHanh = item.MaLoaiBaoHanh;
+                var lbh = context.TbWarrantyTypes.FirstOrDefault(t => t.MaLoaiBaoHanh == item.MaLoaiBaoHanh);
+                productDTO.TenLoaiBaoHanh = lbh.LoaiBaoHanh;
+                productDTO.MaHanBaoHanh = item.MaHanBaoHanh;
+                var hbh = context.TbWarrantyPeriods.FirstOrDefault(t => t.MaHanBaoHanh == item.MaHanBaoHanh);
+                productDTO.TenHanBaoHanh = hbh.HanBaoHanh;
+                productDTO.MaXuatXu = item.MaXuatXu;
+                var xuatxu = context.TbOrigins.FirstOrDefault(t => t.MaXuatXu == item.MaXuatXu);
+                productDTO.TenXuatXu = xuatxu.TenXuatXu;
+                productDTO.TotalRate = item.TotalRate;
+                productDTO.GiaSp = String.Format("{0:0.000}", item.GiaSp);
+                productDTO.CreateDay = item.CreateDay;
+                productDTO.CreateBy = item.CreateBy;
+                productDTO.UpdateBy = item.UpdateBy;
+                productDTO.UpdateDay = item.UpdateDay;
+                lsProduct.Add(productDTO);
+            }
+            return lsProduct;
         }
 
         public TbProduct GetItem(int originid)
         {
-            return context.TbProducts.FirstOrDefault(x => x.MaXuatXu == originid);
+            return context.TbProducts.FirstOrDefault(x => x.MaSp == originid);
         }
 
         public TbProduct Add(TbProduct origin)
@@ -40,7 +73,6 @@ namespace DEMOLISHSHOPEE.Service
             try
             {
                 var _origin = context.TbProducts.FirstOrDefault(x => x.MaSp == origin.MaSp);
-                _origin.MaSp = origin.MaSp;
                 _origin.TenSp = origin.TenSp;
                 _origin.SeoName = origin.SeoName;
                 _origin.MaLoaiSp = origin.MaLoaiSp;

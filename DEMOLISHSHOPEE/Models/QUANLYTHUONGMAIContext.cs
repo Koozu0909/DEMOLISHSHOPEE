@@ -158,8 +158,7 @@ namespace DEMOLISHSHOPEE.Models
 
                 entity.Property(e => e.TenLoaiSp)
                     .HasMaxLength(50)
-                    .HasColumnName("TenLoaiSP")
-                    .IsFixedLength();
+                    .HasColumnName("TenLoaiSP");
             });
 
             modelBuilder.Entity<TbComment>(entity =>
@@ -262,11 +261,9 @@ namespace DEMOLISHSHOPEE.Models
 
                 entity.Property(e => e.DeleteDay).HasColumnType("date");
 
-                entity.Property(e => e.GiaSp).HasColumnName("GiaSP");
-
-                entity.Property(e => e.MaLoaiBaoHanh)
-                    .HasMaxLength(10)
-                    .IsFixedLength();
+                entity.Property(e => e.GiaSp)
+                    .HasColumnType("decimal(18, 0)")
+                    .HasColumnName("GiaSP");
 
                 entity.Property(e => e.MaLoaiSp).HasColumnName("MaLoaiSP");
 

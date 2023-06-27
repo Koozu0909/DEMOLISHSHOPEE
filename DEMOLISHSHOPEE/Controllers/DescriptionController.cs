@@ -46,7 +46,7 @@ namespace DEMOLISHSHOPEE.Controllers
             DescriptionService sv = new DescriptionService(context);
 
             sv.Add(tbDescription);
-            return Ok("OK");
+            return Ok(tbDescription);
         }
 
         [HttpDelete("{id}")]
